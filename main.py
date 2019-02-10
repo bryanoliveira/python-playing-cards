@@ -1,8 +1,11 @@
-from deck import Deck
+from truco import Truco
 
-deck = Deck(Deck.PRESET_TRUCO)
+truco = Truco(2)
 
-hand = deck.draw(3)
-for card in range(len(hand)):
-    print(hand[card].to_string(True))
-
+while not truco.is_done:
+    print("Player " + str(truco.turn) + "'s turn.")
+    obs = truco.observe(truco.turn)
+    act = int(input(truco.available_actions_string(truco.turn) + ": "))
+    reward = truco.act(truco.turn, act)
+    print("Reward: " + str(reward))
+    print()
